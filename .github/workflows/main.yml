@@ -126,10 +126,8 @@ jobs:
         with:
           # Upload only teton/1.6
           path: 'teton/1.6'
-           - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
         with:
           enablement: true
-          # for pages
-
