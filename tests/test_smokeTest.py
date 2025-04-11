@@ -18,7 +18,7 @@ class TestSmokeTest():
     options = Options()
     options.add_argument("--headless=new")
     # Use the absolute path to geckodriver.exe (Windows)
-    service = Service(executable_path='/usr/local/bin/geckodriver')  # <-- Fix here
+    service = Service(executable_path=r'C:\WebDriver\bin\geckodriver.exe') # <-- Fix here
     self.driver = webdriver.Firefox(options=options, service=service)
     self.vars = {}
   
