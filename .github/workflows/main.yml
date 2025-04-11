@@ -48,7 +48,23 @@ jobs:
         directory: .
         port: 5500
         index-files: |
-          ["index.html", "index.htm"]           
+          ["index.html", "index.htm"] 
+    
+        # Added code
+    - name: Install Firefox (Linux)
+        run: sudo apt-get install -y firefox
+
+    - name: Install Geckodriver (Linux)
+        run: |
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
+          tar -xvzf geckodriver*.tar.gz
+          chmod +x geckodriver
+          sudo mv geckodriver /usr/local/bin/  # Add to Linux PATH
+
+    - name: Install Firefox dependencies (Linux)
+
+    # End of code
+
     - name: Run tests
       run: |
         pytest

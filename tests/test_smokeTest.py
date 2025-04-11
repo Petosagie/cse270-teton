@@ -10,14 +10,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+
 
 class TestSmokeTest():
   def setup_method(self, method):
-    # self.driver = webdriver.Firefox()
-    # self.vars = {}
     options = Options()
     options.add_argument("--headless=new")
-    self.driver = webdriver.Firefox(options=options)
+    # Use the absolute path to geckodriver.exe (Windows)
+    service = Service(executable_path=r'C:\WebDriver\bin\geckodriver.exe')  # <-- Fix here
+    self.driver = webdriver.Firefox(options=options, service=service)
     self.vars = {}
   
   def teardown_method(self, method):
