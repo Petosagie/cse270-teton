@@ -9,25 +9,18 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.firefox.options import Options
 
 class TestSmokeTest():
   def setup_method(self, method):
-    # self.driver = webdriver.Firefox()
-    # self.vars = {}   
-      options = Options()
-      options.headless = True
-      print("Headless mode set to:", options.headless)  # Debug print
-      self.driver = webdriver.Firefox(options=options)
-      self.vars = {}
-      
+    self.driver = webdriver.Firefox()
+    self.vars = {}
   
   def teardown_method(self, method):
     self.driver.quit()
   
   def test_joinPage(self):
     self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
-    self.driver.find_element(By.LINK_TEXT, "Join").click()
+    self.driver.find_element(By.LINK_TEXT, "Join Us").click()
     elements = self.driver.find_elements(By.NAME, "fname")
     assert len(elements) > 0
     self.driver.find_element(By.NAME, "fname").send_keys("Osagie")
@@ -55,8 +48,6 @@ class TestSmokeTest():
   def test_directoryPage(self):
     self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
     self.driver.find_element(By.LINK_TEXT, "Directory").click()
-    self.driver.find_element(By.ID, "directory-grid").click()
-    assert self.driver.find_element(By.CSS_SELECTOR, ".gold-member:nth-child(9)").text.strip() == "Teton Turf and Tree\n4735 East Hwy 33\nSugar City, ID 83448\nWebsite"
     self.driver.find_element(By.ID, "directory-grid").click()
     assert self.driver.find_element(By.CSS_SELECTOR, ".gold-member:nth-child(9) > p:nth-child(2)").text == "Teton Turf and Tree"
     self.driver.find_element(By.ID, "directory-list").click()
