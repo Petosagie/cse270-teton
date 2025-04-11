@@ -16,7 +16,8 @@ class TestSmokeTest():
     # self.driver = webdriver.Firefox()
     # self.vars = {}   
       options = Options()
-      options.add_argument("--headless=new")
+      options.headless = True
+      print("Headless mode set to:", options.headless)  # Debug print
       self.driver = webdriver.Firefox(options=options)
       self.vars = {}
       
